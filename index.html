@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .time {
+                /* margin-top: 100px; */
+                width: 200px;
+                margin: 50px auto;
+                text-align: center;
+            }
+            .minutes {
+            }
+        </style>
+    </head>
+    <body>
+        <div class="time">2024-11-24 23:15:00</div>
+        <div class="day time">11</div>
+        <div class="hour time">11</div>
+        <div class="minutes time">2024-11-24 23:15</div>
+        <div class="seconds time">2024-11-24 23:15</div>
+        <div class="dayOur time">2024-11-24 23:15</div>
+        <div class="dayOurMinute time">2024-11-24 23:15</div>
+        <script>
+            const domDay = document.querySelector(".day");
+            const domOurh = document.querySelector(".hour");
+            const domMinute = document.querySelector(".minutes");
+            const domSecond = document.querySelector(".seconds");
+            const domDayOur = document.querySelector(".dayOur");
+
+            const domDayOurMinute = document.querySelector(".dayOurMinute");
+
+            const originDay = new Date("2024-11-24 00:00:00");
+            const originTime = new Date("2024-11-24 23:15:00");
+            setInterval(() => {
+                const now = Date.now();
+
+                const day = Math.ceil((now - originTime) / 1000 / 60 / 60 / 24);
+                domDay.textContent = `第n+${day}天`;
+                // console.log(32, day);
+                const hour = Math.ceil((now - originTime) / 1000 / 60 / 60);
+                // console.log(39, hour);
+                domOurh.textContent = `第n+${hour}小时`;
+                const minutes = Math.ceil((now - originTime) / 1000 / 60);
+                // console.log(26, minutes);
+                domMinute.textContent = `第n+${minutes}分钟`;
+                const seconds = Math.ceil((now - originTime) / 1000);
+                // console.log(26, seconds);
+                domSecond.textContent = `第n+${seconds}秒`;
+
+                const dayOur = `第n+${Math.floor(hour / 24)}天${
+                    hour - Math.floor(hour / 24) * 24
+                }小时`;
+                domDayOur.textContent = dayOur;
+
+                const gap = now - originTime;
+                const floorTime = {
+                    day: Math.floor(gap / 1000 / 60 / 60 / 24),
+                    hour: Math.floor(gap / 1000 / 60 / 60),
+                    minutes: Math.floor(gap / 1000 / 60),
+                    seconds: Math.floor(gap / 1000),
+                };
+
+                const gapDay = Math.floor(gap / 1000 / 60 / 60 / 24);
+                const gapHour = floorTime.hour - gapDay * 24;
+                const gapMinutes = floorTime.minutes - gapHour * 60;
+                const gapSeconds = floorTime.seconds - (minutes - 1) * 60;
+
+                console.log(65, floorTime);
+                console.log(70, gapDay);
+                console.log(70, gapHour);
+                console.log(70, gapMinutes);
+                console.log(70, gapSeconds);
+                domDayOurMinute.textContent = `第n+${gapDay}天${gapHour}小时${gapMinutes}分钟${gapSeconds}秒`;
+            }, 1000);
+        </script>
+    </body>
+</html>
