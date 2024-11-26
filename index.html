@@ -23,6 +23,8 @@
         <div class="seconds time">2024-11-24 23:15</div>
         <div class="dayOur time">2024-11-24 23:15</div>
         <div class="dayOurMinute time">2024-11-24 23:15</div>
+        <div class="test time">2024-11-24 23:15</div>
+
         <script>
             const domDay = document.querySelector(".day");
             const domOurh = document.querySelector(".hour");
@@ -32,10 +34,16 @@
 
             const domDayOurMinute = document.querySelector(".dayOurMinute");
 
+            const domTest = document.querySelector(".test");
+
             const originDay = new Date("2024-11-24 00:00:00").getTime();
             const originTime = new Date("2024-11-24 23:15:00").getTime();
+
             setInterval(() => {
                 const now = Date.now();
+                domTest.textContent = `${now}-${originTime}-${Math.ceil(
+                    12213
+                )}`;
 
                 const day = Math.ceil((now - originTime) / 1000 / 60 / 60 / 24);
                 domDay.textContent = `第n+${day}天`;
