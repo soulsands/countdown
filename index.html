@@ -68,7 +68,8 @@
 
                 const gapDay = Math.floor(gap / 1000 / 60 / 60 / 24);
                 const gapHour = floorTime.hour - gapDay * 24;
-                const gapMinutes = floorTime.minutes - gapHour * 60;
+                const gapMinutes =
+                    floorTime.minutes - gapHour * 60 - gapDay * 24 * 60;
                 const gapSeconds = floorTime.seconds - (minutes - 1) * 60;
 
                 console.log(65, floorTime);
