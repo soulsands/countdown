@@ -25,6 +25,14 @@
         <div class="dayOurMinute time">2024-11-24 23:15</div>
 
         <script>
+            document.querySelectorAll(".time").forEach((dom) => {
+                dom.addEventListener("click", (e) => {
+                    console.log(29, e);
+                    navigator.clipboard.writeText(e.target.textContent);
+                    alert("复制成功");
+                });
+            });
+
             const domDay = document.querySelector(".day");
             const domOurh = document.querySelector(".hour");
             const domMinute = document.querySelector(".minutes");
@@ -41,19 +49,19 @@
                 const now = Date.now();
 
                 const day = Math.ceil((now - originTime) / 1000 / 60 / 60 / 24);
-                domDay.textContent = `第n+${day}天`;
+                domDay.textContent = `第n分钟+${day}天`;
                 // console.log(32, day);
                 const hour = Math.ceil((now - originTime) / 1000 / 60 / 60);
                 // console.log(39, hour);
-                domOurh.textContent = `第n+${hour}小时`;
+                domOurh.textContent = `第n分钟+${hour}小时`;
                 const minutes = Math.ceil((now - originTime) / 1000 / 60);
                 // console.log(26, minutes);
                 domMinute.textContent = `第n+${minutes}分钟`;
                 const seconds = Math.ceil((now - originTime) / 1000);
                 // console.log(26, seconds);
-                domSecond.textContent = `第n+${seconds}秒`;
+                domSecond.textContent = `第n分钟+${seconds}秒`;
 
-                const dayOur = `第n+${Math.floor(hour / 24)}天${
+                const dayOur = `第n分钟+${Math.floor(hour / 24)}天${
                     hour - Math.floor(hour / 24) * 24
                 }小时`;
                 domDayOur.textContent = dayOur;
@@ -77,7 +85,7 @@
                 console.log(70, gapHour);
                 console.log(70, gapMinutes);
                 console.log(70, gapSeconds);
-                domDayOurMinute.textContent = `第n+${gapDay}天${gapHour}小时${gapMinutes}分钟${gapSeconds}秒`;
+                domDayOurMinute.textContent = `第n分钟+${gapDay}天${gapHour}小时${gapMinutes}分钟${gapSeconds}秒`;
             }, 1000);
         </script>
     </body>
